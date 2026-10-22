@@ -279,7 +279,7 @@ function calculatePrice() {
             <div class="fee-card-header" style="color: #004085; background: #d6ebff;" onclick="toggleCard(this)">
                 <div style="display: flex; align-items: center; gap: 8px;">
                     <span>📋 รายละเอียดค่าธรรมเนียม Website</span>
-                    <img src="./logo/website.png" style="height: 16px; width: auto;" alt="Web">
+                    <img src="./images/website.png" style="height: 16px; width: auto;" alt="Web">
                 </div>
                 <span class="toggle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
             </div>
@@ -336,9 +336,9 @@ function calculatePrice() {
         </div>`;
     };
 
-    breakdownHTML += createMarketplaceCard('Shopee', shopeePrice, baseCost, targetProfit, targetDetailText, otherCosts, currentRate.shopee.comm, currentRate.shopee.trans, currentRate.shopee.prog, currentRate.shopee.fixed, '#ee4d2d', '#fff1ee', './logo/shopee.png', '20px', null, buyerShipping);
-    breakdownHTML += createMarketplaceCard('Lazada', lazadaPrice, baseCost, targetProfit, targetDetailText, otherCosts, currentRate.lazada.comm, currentRate.lazada.trans, currentRate.lazada.prog, currentRate.lazada.fixed, '#0f146d', '#f2f3ff', './logo/lazada.png', '16px', null, buyerShipping);
-    breakdownHTML += createMarketplaceCard('TikTok', tiktokPrice, baseCost, targetProfit, targetDetailText, otherCosts, currentRate.tiktok.comm, currentRate.tiktok.trans, currentRate.tiktok.prog, currentRate.tiktok.fixed, '#000000', '#f5f5f5', './logo/tiktok.png', '16px', s.tiktokMax, buyerShipping);
+    breakdownHTML += createMarketplaceCard('Shopee', shopeePrice, baseCost, targetProfit, targetDetailText, otherCosts, currentRate.shopee.comm, currentRate.shopee.trans, currentRate.shopee.prog, currentRate.shopee.fixed, '#ee4d2d', '#fff1ee', './images/shopee.png', '20px', null, buyerShipping);
+    breakdownHTML += createMarketplaceCard('Lazada', lazadaPrice, baseCost, targetProfit, targetDetailText, otherCosts, currentRate.lazada.comm, currentRate.lazada.trans, currentRate.lazada.prog, currentRate.lazada.fixed, '#0f146d', '#f2f3ff', './images/lazada.png', '16px', null, buyerShipping);
+    breakdownHTML += createMarketplaceCard('TikTok', tiktokPrice, baseCost, targetProfit, targetDetailText, otherCosts, currentRate.tiktok.comm, currentRate.tiktok.trans, currentRate.tiktok.prog, currentRate.tiktok.fixed, '#000000', '#f5f5f5', './images/tiktok.png', '16px', s.tiktokMax, buyerShipping);
 
     breakdownBox.innerHTML = breakdownHTML;
 
