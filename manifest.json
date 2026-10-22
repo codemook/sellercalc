@@ -1,0 +1,21 @@
+{
+  "name": "Seller Calculator",
+  "short_name": "SellerCalc",
+  "description": "ระบบคำนวณราคาขายและจุดคุ้มทุนสำหรับร้านค้าออนไลน์",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f0f2f5",
+  "theme_color": "#007bff",
+  "icons": [
+    {
+      "src": "./images/app-icon.png",
+      "sizes": "192x192",
+      "type": "images/png"
+    },
+    {
+      "src": "./images/app-icon.png",
+      "sizes": "512x512",
+      "type": "images/png"
+    }
+  ]
+}

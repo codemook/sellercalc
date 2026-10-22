@@ -1,0 +1,258 @@
+/* =========================================
+   1. แบบอักษรและการตั้งค่าพื้นฐาน (Base & Reset)
+========================================= */
+* { font-family: 'Sarabun', sans-serif; box-sizing: border-box; }
+body { line-height: 1.6; background-color: #f0f2f5; color: #333; margin: 0; padding: 0; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+h2 { margin-top: 0; margin-bottom: 15px; font-size: 20px; color: #1a1a1a; }
+
+/* =========================================
+   2. โครงสร้างและเลย์เอาต์ (Layout & Container)
+========================================= */
+.main-wrapper { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; max-width: 1600px; margin: 0 auto; padding: 20px; height: calc(100vh - 85px); }
+.main-wrapper.single-column { grid-template-columns: 1fr; }
+.container { background: transparent; padding: 0 10px 10px 0; width: 100%; height: 100%; overflow-y: auto; }
+.breakdown-container { padding: 0; }
+.content { display: none; }
+.content.active { display: block; animation: fadeIn 0.3s ease; }
+
+.container::-webkit-scrollbar { width: 6px; }
+.container::-webkit-scrollbar-track { background: transparent; }
+.container::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+.container::-webkit-scrollbar-thumb:hover { background: #aaa; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Grid System */
+.grid-4-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+.grid-3-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.grid-2-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.margin-bottom-16 { margin-bottom: 16px; }
+.margin-bottom-10 { margin-bottom: 10px; }
+.no-margin-bottom { margin-bottom: 0 !important; }
+
+/* =========================================
+   3. แถบนำทางด้านบน (Navbar & Logo)
+========================================= */
+.navbar { background-color: #ffffff; height: 65px; padding: 0 25px; display: flex; align-items: center; justify-content: space-between; border-radius: 12px; border: 1px solid #e1e4e8; box-shadow: 0 4px 12px rgba(0,0,0,0.03); width: calc(100% - 40px); max-width: 1560px; margin: 20px auto 0 auto; z-index: 100; flex-shrink: 0; position: relative; }
+.navbar-brand { display: flex; align-items: center; gap: 10px; }
+.navbar-brand h1 { margin: 0; font-size: 20px; color: #1a1a1a; font-weight: 800; white-space: nowrap; }
+.navbar-brand h1 span { color: #007bff; font-weight: 800; }
+.logo-box { display: flex; align-items: center; background-color: rgba(0, 123, 255, 0.08); padding: 6px; border-radius: 10px; margin-right: 12px; }
+.logo-img { height: 32px; width: auto; display: block; }
+
+/* เมนู Tab ตรงกลาง */
+.tab-menu { display: flex; gap: 5px; height: 100%; align-items: center; position: absolute; left: 50%; transform: translateX(-50%); }
+.tab-btn { height: 100%; padding: 0 20px; cursor: pointer; border: none; background-color: transparent; font-weight: 600; font-size: 15px; color: #666; border-bottom: 3px solid transparent; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.tab-btn.active { color: #007bff; border-bottom: 3px solid #007bff; }
+.tab-btn:hover:not(.active) { color: #007bff; }
+
+/* Hamburger Menu & Dropdown ฝั่งขวา */
+.navbar-right { position: relative; }
+.hamburger-btn { background: none; border: none; cursor: pointer; padding: 8px; color: #555; display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: background 0.2s; }
+.hamburger-btn:hover { background-color: #f0f2f5; }
+.dropdown-content { display: none; position: absolute; right: 0; top: 100%; background-color: #ffffff; min-width: 180px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); border-radius: 8px; border: 1px solid #e1e4e8; z-index: 1000; overflow: hidden; margin-top: 8px; }
+.dropdown-item { width: 100%; text-align: left; padding: 12px 16px; background: none; border: none; cursor: pointer; color: #dc3545; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: background 0.2s; }
+.dropdown-item:hover { background-color: #fff0f0; }
+
+/* =========================================
+   4. ส่วนประกอบ UI หลัก (Cards & Panels)
+========================================= */
+.ui-card { background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e1e4e8; box-shadow: 0 4px 10px rgba(0,0,0,0.03); margin-bottom: 20px; }
+.ui-card.no-margin { margin-bottom: 0; }
+.ui-card-title { margin-top: 0; font-size: 16px; color: #333; margin-bottom: 15px; }
+
+/* ระบบย่อขยาย Accordion */
+.ui-card-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; margin-bottom: 15px; }
+.ui-card.collapsed .ui-card-header { margin-bottom: 0; }
+.ui-card-header h2, .ui-card-header h3, .ui-card-header .ui-card-title { margin-bottom: 0 !important; }
+.ui-card.collapsed .ui-card-body, .fee-card.collapsed .fee-card-body { display: none; }
+.toggle-icon { transform: rotate(90deg); transition: transform 0.2s ease; display: flex !important; align-items: center; justify-content: center; color: #aaa; font-size: 14px; }
+.ui-card.collapsed .toggle-icon, .fee-card.collapsed .toggle-icon { transform: rotate(0deg); }
+
+/* =========================================
+   5. แบบฟอร์มและช่องกรอกข้อมูล (Forms & Inputs)
+========================================= */
+.input-group { margin-bottom: 16px; }
+label { font-size: 15px; font-weight: 600; display: block; margin-bottom: 5px; }
+.label-shopee { font-size: 13px; color: #ee4d2d; }
+.label-lazada { font-size: 13px; color: #0f146d; }
+.label-tiktok { font-size: 13px; color: #000000; }
+
+input, select { width: 100%; padding: 10px 12px; border: 1px solid #ccd0d5; border-radius: 6px; font-size: 15px; transition: border-color 0.2s; -webkit-appearance: none; appearance: none; background-color: #ffffff; color: #333; }
+input:focus, select:focus { outline: none; border-color: #007bff; }
+.white-bg { background-color: #ffffff !important; }
+
+select { background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23666666%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; padding-right: 35px; cursor: pointer; }
+input[type="checkbox"] { -webkit-appearance: auto !important; appearance: auto !important; width: 18px !important; height: 18px !important; padding: 0 !important; margin: 0 !important; cursor: pointer !important; }
+
+.profit-input { display: flex; align-items: center; gap: 10px; width: 100%; }
+.profit-input input { flex: 1; min-width: 0; }
+.profit-input select { flex: 0 0 85px; padding: 10px 5px; }
+
+.input-unit-wrapper { display: flex; align-items: center; gap: 10px; width: 100%; }
+.input-unit-wrapper input { flex: 1; min-width: 0; }
+.unit-text { flex: 0 0 85px; color: #555; font-size: 15px; white-space: nowrap; }
+.unit-text.flex-shrink { flex: 0 0 20px; }
+
+.input-highlight { background-color: #f0f7ff; border: 1px solid #80bdff; }
+.input-highlight:focus { border-color: #007bff; box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
+
+.dynamic-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+.dynamic-row .expense-name { flex: 1; }
+
+.action-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: #f0f7ff; padding: 15px; border-radius: 8px; border: 1px solid #cce5ff; margin-bottom: 20px; }
+.action-group { display: flex; flex: 1; min-width: 250px; gap: 5px; }
+
+/* =========================================
+   6. ปุ่มกด (Buttons)
+========================================= */
+.btn-primary { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-primary:hover { background: #0056b3; }
+.btn-secondary { width: 100%; padding: 10px; background: #ffffff; color: #007bff; border: 2px solid #007bff; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-secondary:hover { background: #f0f7ff; }
+
+.btn-icon { width: 44px; display: flex; align-items: center; justify-content: center; background: #ffffff; border: 1px solid #ccd0d5; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-size: 16px; padding: 0; flex-shrink: 0; }
+.btn-icon:hover { background: #f0f2f5; border-color: #adb5bd; }
+.btn-icon-danger { color: #dc3545; }
+.btn-icon-danger:hover { background: #f8d7da; border-color: #f5c6cb; }
+
+.btn-action-save { padding: 10px 15px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; white-space: nowrap; background: #ffffff; color: #007bff; border: 1px solid #007bff; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.btn-action-save:hover { opacity: 0.8; }
+
+.btn-add { width: 100%; padding: 10px; background-color: #ffffff; color: #007bff; border: 2px solid #007bff; border-radius: 8px; font-size: 14px; font-weight: 600; margin-top: 5px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+.btn-add:hover { background-color: #f0f7ff; }
+.btn-remove { padding: 8px 15px; background-color: #dc3545; color: white; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; }
+.btn-remove:hover:not(:disabled) { background-color: #c82333; }
+.btn-remove:disabled { background-color: #f5c6cb; cursor: not-allowed; }
+
+.action-buttons-group { display: flex; flex-direction: column; gap: 12px; margin-top: 25px; }
+
+/* =========================================
+   7. กล่องผลลัพธ์ สลิป และ กราฟ (Results & Charts)
+========================================= */
+.result-grid { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 10px !important; margin-bottom: 20px !important; }
+.result-box { border: 2px solid #e1e4e8 !important; padding: 14px 5px !important; border-radius: 8px !important; text-align: center !important; background-color: #ffffff !important; display: flex !important; flex-direction: column !important; justify-content: center !important; }
+.result-box h3 { font-size: 16px !important; margin: 0 0 6px 0 !important; white-space: nowrap !important; display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600; }
+.result-box h3 img { height: 16px; width: auto; }
+.result-box h3.color-website { color: #555; }
+.result-box h3.color-shopee { color: #ee4d2d; }
+.result-box h3.color-shopee img { height: 18px; }
+.result-box h3.color-lazada { color: #0f146d; }
+.result-box h3.color-tiktok { color: #000000; }
+.result-box .price { font-size: 19px !important; color: #e53935 !important; font-weight: 700 !important; line-height: 1.2 !important; }
+
+/* ⭐️ เพิ่มสไตล์ให้ข้อความ % ที่เพิ่มขึ้น */
+.price-diff { 
+    font-size: 13px !important; 
+    color: #6c757d !important; 
+    margin-top: 4px !important; 
+    font-weight: 500 !important; 
+}
+.setting-box { background-color: #fafbfc; border: 1px solid #e1e4e8; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+.setting-box h3 { font-size: 15px; color: #555; margin-top: 0; margin-bottom: 10px; }
+.custom-round-group { display: none; background: #ffffff; padding: 10px 15px; border-radius: 8px; border: 1px dashed #ccc; margin-bottom: 0; }
+.custom-round-group label { margin-bottom: 8px; }
+.custom-round-input { display: flex; gap: 10px; align-items: center; }
+.custom-round-input input { width: 100%; max-width: 120px; }
+.custom-round-input span { color: #666; font-size: 13px; }
+
+.total-box { padding: 15px; background-color: #eef8f1; border-radius: 8px; text-align: center; border: 1px solid #c3e6cb; }
+.total-box h3 { margin: 0; font-size: 18px; color: #155724; }
+.total-box .highlight { font-size: 22px; font-weight: 700; color: #007bff; }
+
+.fee-card { background: #ffffff; border: 1px solid #e1e4e8; border-radius: 8px; margin-bottom: 20px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+.fee-card-header { padding: 12px 15px; font-size: 15px; font-weight: 700; border-bottom: 1px solid #e1e4e8; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+.fee-row { display: flex; justify-content: space-between; padding: 12px 15px; border-bottom: 1px solid #eee; }
+.fee-main-price { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+.fee-item { padding: 12px 15px; border-bottom: 1px solid #f9f9f9; }
+.fee-item-main { display: flex; justify-content: space-between; font-size: 15px; color: #495057; margin-bottom: 4px; align-items: flex-start; gap: 10px; }
+.fee-name { font-weight: bold; }
+.fee-amount { color: #ff4d4f; font-weight: 500; white-space: nowrap; }
+.fee-calc { font-size: 13px; color: #999; margin-bottom: 8px; }
+.fee-total { font-size: 15px; font-weight: 700; background-color: #fafbfc; align-items: flex-start; gap: 10px; }
+.fee-amount-total { color: #ff4d4f; white-space: nowrap; }
+.fee-net { font-size: 16px; background-color: #f0fdf4; border-bottom: none; color: #155724; align-items: center; gap: 10px; }
+
+/* กล่องย่อยหน้าจุดคุ้มทุน */
+.breakeven-export { border-color: #c3e6cb; background-color: #eef8f1; margin-top: 0; }
+.breakeven-export-header { color: #000000; background: #d4edda; border-bottom-color: #c3e6cb; font-size: 18px; justify-content: center; }
+.breakeven-export-body { padding: 20px; }
+.breakeven-box { background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #28a74540; box-shadow: 0 2px 4px rgba(0,0,0,0.02); text-align: center; }
+.breakeven-box.daily { border-color: #e5393540; }
+.val-monthly { color: #28a745; font-size: 26px; font-weight: 700; }
+.val-daily { color: #e53935; font-size: 26px; font-weight: 700; }
+.val-unit { color: #666; font-size: 15px; margin-top: 5px; }
+
+/* Backup Settings */
+.backup-options-box { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e1e4e8; }
+.checkbox-label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+
+/* Table */
+.table-responsive { width: 100%; border-radius: 8px; border: 1px solid #e1e4e8; overflow: visible; }
+.settings-table { width: 100%; border-collapse: collapse; min-width: 500px; background: #fafbfc; }
+.settings-table th { text-align: left; padding: 12px 15px; font-size: 14px; border-bottom: 2px solid #e1e4e8; background-color: #f0f2f5; white-space: nowrap; }
+.settings-table td { padding: 10px 15px; border-bottom: 1px solid #e1e4e8; vertical-align: middle; }
+.settings-table tr:last-child td { border-bottom: none; }
+.settings-table td:first-child { font-weight: 600; color: #333; white-space: nowrap; }
+.settings-table input { padding: 8px; text-align: center; }
+
+/* Charts */
+.charts-container { display: none; margin-bottom: 25px; align-items: start; }
+.chart-wrapper { width: 100%; max-width: 240px; margin: 0 auto; }
+.placeholder-text { color: #999; text-align: center; margin-top: 30px; margin-bottom: 30px; }
+
+/* =========================================
+   8. อุปกรณ์เสริม (Tooltip & Toast)
+========================================= */
+.tooltip-wrapper { display: flex; align-items: center; gap: 5px; }
+.tooltip-container { position: relative; display: inline-flex; align-items: center; margin-left: 5px; cursor: help; }
+.info-icon { font-size: 11px; color: #ffffff; background: #888; border-radius: 50%; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: sans-serif; transition: background 0.2s; }
+.tooltip-container:hover .info-icon { background: #007bff; }
+.tooltip-content { display: none; position: absolute; top: 50%; bottom: auto; left: 28px; transform: translateY(-50%); background-color: #1a1a1a; color: #fff; text-align: left; padding: 15px; border-radius: 8px; width: 320px; z-index: 1000; font-size: 13px; line-height: 1.5; box-shadow: 0 4px 15px rgba(0,0,0,0.2); white-space: normal; word-wrap: break-word; word-break: break-word; }
+.tooltip-content::after { content: ""; position: absolute; top: 50%; right: 100%; left: auto; transform: translateY(-50%); border-width: 5px; border-style: solid; border-color: transparent #1a1a1a transparent transparent; }
+.tooltip-container:hover .tooltip-content { display: block; animation: fadeInTooltip 0.2s ease; }
+@keyframes fadeInTooltip { from { opacity: 0; } to { opacity: 1; } }
+
+.toast-container { position: fixed; top: 25px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+.toast { background: #ffffff; padding: 12px 24px; border-radius: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; opacity: 0; transform: translateY(-20px); transition: all 0.3s ease; white-space: nowrap; }
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { border: 2px solid #28a745; color: #155724; background: #eef8f1; }
+.toast.error { border: 2px solid #dc3545; color: #721c24; background: #fff0f0; }
+
+/* =========================================
+   9. รองรับหน้าจอขนาดเล็ก (Responsive)
+========================================= */
+@media (max-width: 992px) { 
+    html, body { max-width: 100vw; overflow-x: hidden; }
+    body { height: auto; overflow-y: visible; padding: 10px; }
+    .main-wrapper { grid-template-columns: minmax(0, 1fr); height: auto; padding: 0; gap: 10px; max-width: 100%; }
+    .container { height: auto; overflow-y: visible; padding: 10px 0; max-width: 100%; min-width: 0; }
+    
+    .navbar { width: 100%; margin: 10px 0; padding: 15px; flex-wrap: wrap; height: auto; gap: 10px; }
+    .tab-menu { position: static; transform: none; width: 100%; justify-content: space-between; order: 3; margin-top: 5px; background: #f0f2f5; padding: 5px; border-radius: 10px; gap: 4px; }
+    .tab-btn { height: auto; flex: 1; padding: 10px 5px; font-size: 14px; border-bottom: none !important; border-radius: 8px; }
+    .tab-btn.active { background: #ffffff; color: #007bff; box-shadow: 0 2px 5px rgba(0,0,0,0.08); }
+
+    .ui-card { max-width: 100%; min-width: 0; overflow: hidden; }
+    .table-responsive { display: block !important; width: 100% !important; overflow-x: auto !important; overflow-y: hidden !important; -webkit-overflow-scrolling: touch; }
+    .settings-table { min-width: 750px !important; width: 750px !important; }
+    
+    .tooltip-content { position: fixed !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; width: 90vw !important; max-width: 350px !important; z-index: 9999 !important; box-shadow: 0 15px 50px rgba(0,0,0,0.6) !important; border: 1px solid #444 !important; }
+    .tooltip-content::after { display: none !important; }
+}
+
+@media (max-width: 600px) { 
+    .grid-4-cols, .grid-3-cols, .grid-2-cols { grid-template-columns: 1fr !important; gap: 12px; }
+    .ui-card { padding: 15px; } 
+    h2 { font-size: 18px; }
+    .tab-btn { padding: 8px 2px; font-size: 13px; gap: 4px; }
+    
+    .result-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .result-box { padding: 12px 5px !important; }
+    .result-box h3 { font-size: 15px !important; }
+    .result-box .price { font-size: 20px !important; }
+
+    .dynamic-row { flex-wrap: wrap !important; background-color: #f8f9fa; padding: 12px; border-radius: 8px; border: 1px solid #e1e4e8; gap: 8px !important; }
+    .dynamic-row .expense-name { flex: 0 0 100% !important; }
+    .dynamic-row .btn-remove { padding: 10px 15px !important; }
+}
